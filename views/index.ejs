@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Lens</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body style="font-family: Poppins,sans-serif;">
+    <div class="container mt-3">
+        <h1><svg xmlns="http://www.w3.org/2000/svg"  width="50" height="50" fill="currentColor" class="bi bi-cloud-haze2" viewBox="0 0 16 16">
+            <path d="M8.5 3a4 4 0 0 0-3.8 2.745.5.5 0 1 1-.949-.313 5.002 5.002 0 0 1 9.654.595A3 3 0 0 1 13 12H4.5a.5.5 0 0 1 0-1H13a2 2 0 0 0 .001-4h-.026a.5.5 0 0 1-.5-.445A4 4 0 0 0 8.5 3M0 7.5A.5.5 0 0 1 .5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m2 2a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-2 4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5"/>
+          </svg> Weather Lens</h1>
+        <form action="/send" method="POST" class="mb-3">
+            <input type="text" name="location" class="form-control" placeholder="Enter city or location" required>
+            <button type="submit" class="btn btn-primary mt-3">Get Weather</button>
+        </form>
+
+        <% if (weatherData) { %>
+            <!-- Display current weather -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h3>Current Weather in <%= weatherData.location %></h3>
+                    <p><strong><%= weatherData.Date %></strong></p>
+                    <p>Temperature: <%= weatherData.Temperature %> °C</p>
+                    <p>Humidity: <%= weatherData.Humidity %> %</p>
+                    <p>Weather: <%= weatherData.Description %></p>
+                </div>
+            </div>
+
+            <!-- Display Forecast -->
+            <h3>Forecast</h3>
+            <div class="row">
+                <% weatherData.forecast.forEach((day, index) => { %>
+                    <div class="col-md-3">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <p><strong><%= day.date %></strong></p>
+                                <p>Temp: <%= day.temperature %> °C</p>
+                                <p>Humid: <%= day.humidity %> %</p>
+                                <p>Weather: <%= day.weatherDescription %></p>
+                            </div>
+                        </div>
+                    </div>
+             <% })%>
+         </div>
+        <% } %>
+     </div>
+</body>
+</html>
