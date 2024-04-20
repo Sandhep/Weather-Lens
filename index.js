@@ -6,7 +6,7 @@ const app=express();
 const port=3000;
 
 const API_URL="https://api.openweathermap.org/data/2.5/forecast";
-const API_KEY="6547c3508cfd7465db0947f0ddab416d";
+const API_KEY=" ";
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
